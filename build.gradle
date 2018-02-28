@@ -1,0 +1,49 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.10.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.alanc.workingsystem'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	// compile 'org.springframework.cloud:spring-cloud-config-server'
+	// To use Spring Cloud Connectors for development
+	compile 'org.springframework.cloud:spring-cloud-localconfig-connector'
+
+	// If you intend to deploy the app to Cloud Foundry
+	compile 'org.springframework.cloud:spring-cloud-cloudfoundry-connector'
+
+	compile("org.springframework.boot:spring-boot-starter-web")
+	compile("io.pivotal.spring.cloud:spring-cloud-services-starter-service-registry")
+	// tag::actuator[]
+	compile("org.springframework.boot:spring-boot-starter-actuator")
+	// end::actuator[]
+	// tag::tests[]
+	testCompile("org.springframework.boot:spring-boot-starter-test")
+	// end::tests[]
+
+	// mysql support
+	compile ('org.springframework.boot:spring-boot-starter-data-jpa')
+	runtime 'mysql:mysql-connector-java'
+	// -------------
+
+	compile 'com.google.code.gson:gson:2.8.1'
+}

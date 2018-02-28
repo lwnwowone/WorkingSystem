@@ -1,0 +1,11 @@
+server:
+  context-path: /
+  port: ${PORT:9527}
+
+spring:
+  jpa:
+  datasource:
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:123456}
+    url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:WSDB}?useSSL=false&characterEncoding=UTF-8
+    connection-init-sql: 'SELECT 1'
